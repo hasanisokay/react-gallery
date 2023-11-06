@@ -1,0 +1,49 @@
+{
+    "images": [
+      {
+        "url": "https://i.ibb.co/X7D4fqG/image-11.jpg",
+        "isFeatured": true
+      },
+      {
+        "url": "https://i.ibb.co/yhPKCdJ/image-1.webp",
+        "isFeatured": false
+      },
+      {
+        "url": "https://i.ibb.co/P4ZXSWq/image-2.webp",
+        "isFeatured": false
+      },
+      {
+        "url": "https://i.ibb.co/y8J8QD5/image-3.webp",
+        "isFeatured": false
+      },
+      {
+        "url": "https://i.ibb.co/GJ2KV0g/image-4.webp",
+        "isFeatured": false
+      },
+      {
+        "url": "https://i.ibb.co/t3sTy0G/image-5.webp",
+        "isFeatured": false
+      },
+      {
+        "url": "https://i.ibb.co/XzVRdDQ/image-6.webp",
+        "isFeatured": false
+      },
+      {
+        "url": "https://i.ibb.co/MnKdJ3C/image-7.webp",
+        "isFeatured": false
+      },
+      {
+        "url": "https://i.ibb.co/Swmb2GL/image-8.webp",
+        "isFeatured": false
+      },
+      {
+        "url": "https://i.ibb.co/jzNfk5H/image-9.webp",
+        "isFeatured": false
+      },
+      {
+        "url": "https://i.ibb.co/kh0JMBy/image-10.jpg",
+        "isFeatured": false
+      }
+    ]
+  }
+  
