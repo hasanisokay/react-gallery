@@ -3,10 +3,11 @@ import axios from "axios";
 import { FaPhotoFilm } from "react-icons/fa6"
 import { useEffect } from "react";
 import Loading from "./components/Loading";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 const App = () => {
   const [imageArray, setImageArray] = useState([]);
-  console.log(imageArray);
   const [loading, setLoading] = useState(false)
+
   const handleUpload = async (newImage) => {
     setLoading(true)
     const formData = new FormData();
@@ -18,23 +19,19 @@ const App = () => {
         formData
       );
       const newImageURL = await response.data.data.url;
-      const res = axios.post("http://localhost:3000/newLink", { url: newImageURL, isFeatured: false })
+      await axios.post("http://localhost:3000/newLink", { url: newImageURL, isFeatured: false })
       setImageArray([
         ...imageArray,
         { url: newImageURL, isFeatured: false },
       ]);
       setLoading(false);
-
     } catch (error) {
       console.error("Image upload error:", error);
     }
   };
-  console.log(imageArray);
-
   const handleDragStart = (e, index) => {
     e.dataTransfer.setData("index", index);
   };
-
   const handleDragOver = (e) => {
     e.preventDefault();
   };
@@ -50,12 +47,14 @@ const App = () => {
     });
     setImageArray(updatedImageArray);
   };
-  useEffect(() => {
 
+  // for mobile touch events
+
+  useEffect(() => {
     const getAllLink = async () => {
-      setLoading(false)
+      setLoading(true);
       setImageArray((await axios.get("http://localhost:3000/allLink")).data)
-      setLoading(false)
+      setLoading(false);
     }
     getAllLink();
   }, [])
@@ -77,27 +76,28 @@ const App = () => {
             className="w-full h-full border-gray-500 border-2 rounded-xl"
             draggable="true"
             onDragStart={(e) => handleDragStart(e, index)}
+          
           />
         </div>)
       )}
 
-        <div className="bg-gray-200 border-gray-500 border-[1px] border-dashed rounded-xl flex items-center justify-center flex-col md:max-w-[300px] md:min-w-[150px] md:max-h-[200px] md:min-h-[200px]">
-          <FaPhotoFilm className="w-16 h-8" />
-          <label
-            htmlFor="imageUpload"
-            className="text-center cursor-pointer"
-          >
-            Add Images
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => handleUpload(e.target.files[0])}
-            className="hidden"
-            id="imageUpload"
-          />
-        </div>
+      <div className="bg-gray-200 border-gray-500 border-[1px] border-dashed rounded-xl flex items-center justify-center flex-col md:max-w-[300px] md:min-w-[150px] md:max-h-[200px] md:min-h-[200px]">
+        <FaPhotoFilm className="w-16 h-8" />
+        <label
+          htmlFor="imageUpload"
+          className="text-center cursor-pointer"
+        >
+          Add Images
+        </label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => handleUpload(e.target.files[0])}
+          className="hidden"
+          id="imageUpload"
+        />
       </div>
+    </div>
   )
 }
 
